@@ -26,7 +26,7 @@ public class Done_DestroyByContact : MonoBehaviour
 
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.tag == "Boundary" || other.tag == "Enemy")
+		if (other.CompareTag("Boundary") || other.CompareTag("Enemy"))
 		{
 			return;
 		}
@@ -37,7 +37,7 @@ public class Done_DestroyByContact : MonoBehaviour
             explosion.InstantiateAsync(transform.position, transform.rotation);
 		}
 
-		if (other.tag == "Player")
+		if (other.CompareTag("Player"))
 		{
             // ADDRESSABLES UPDATES
             playerExplosion.InstantiateAsync(other.transform.position, other.transform.rotation);

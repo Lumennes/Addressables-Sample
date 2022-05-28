@@ -8,7 +8,7 @@ public class Done_DestroyByTime : MonoBehaviour
 
     void Start()
 	{
-        Invoke("Release", lifetime);
+        Invoke(nameof(Release), lifetime);
 	}
 
     void Release()

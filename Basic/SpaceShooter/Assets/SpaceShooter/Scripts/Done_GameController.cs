@@ -54,7 +54,7 @@ public class Done_GameController : MonoBehaviour
         if (op.Status == AsyncOperationStatus.Failed)
         {
             Debug.Log("Failed to load hazards, retrying in 1 second...");
-            Invoke("LoadHazards", 1);
+            Invoke(nameof(LoadHazards), 1);
             return;
         }
         hazardLocations = new List<IResourceLocation>(op.Result);
@@ -63,7 +63,7 @@ public class Done_GameController : MonoBehaviour
             if (op2.Status == AsyncOperationStatus.Failed)
             {
                 gameOverText.text = "Failed to load player prefab. Check console for errors.";
-                Invoke("LoadHazards", 1);
+                Invoke(nameof(LoadHazards), 1);
             }
             else
             {
@@ -109,7 +109,7 @@ public class Done_GameController : MonoBehaviour
             for (int i = 0; i < hazardCount; i++)
             {
                 var hazardAddress = hazardLocations[Random.Range(0, hazardLocations.Count)];
-                Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+                Vector3 spawnPosition = new(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
 
                 // ADDRESSABLES UPDATES

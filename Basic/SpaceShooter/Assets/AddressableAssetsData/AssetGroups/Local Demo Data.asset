@@ -21,9 +21,10 @@ MonoBehaviour:
     m_Address: SpaceShooter
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 048acd6f751689a41b9053bbf472e82f, type: 2}
   m_SchemaSet:
     m_Schemas:
     - {fileID: 11400000, guid: f36e8d868c16334418e9fd3ef3d6cf1b, type: 2}
-    - {fileID: 11400000, guid: 6bd39b1044c70af439e2eb8a1fc2d39d, type: 2}
+    - {fileID: 11400000, guid: cb49c52fd1ed41047a6dcd2ea2fdf1d0, type: 2}
