@@ -11,15 +11,15 @@ env:
 
 jobs:
   buildForAllPlatformsUbuntu:
-    name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
+    name: Build for ${{ matrix.targetPlatform }} #on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         projectPath:
           - Basic/SpaceShooter
-        unityVersion:
-          - 2022.1.2f1
+        #unityVersion:
+          #- 2022.1.2f1
           #- 2019.2.11f1
           #- 2019.3.15f1
         targetPlatform:
@@ -61,7 +61,7 @@ jobs:
       - uses: game-ci/unity-builder@v2
         with:
           projectPath: ${{ matrix.projectPath }}
-          unityVersion: ${{ matrix.unityVersion }}
+          #unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
           #customParameters: -profile SomeProfile -someBoolean -someValue exampleValue
 
