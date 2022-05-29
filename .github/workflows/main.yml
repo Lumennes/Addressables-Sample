@@ -1,7 +1,7 @@
 name: Builds
 
 on:
-  push: { branches: [master] }
+  workflow_dispatch: {}
   pull_request:
     paths-ignore:
       - '.github/**'
@@ -11,22 +11,21 @@ env:
 
 jobs:
   buildForAllPlatformsUbuntu:
-    name: Build for ${{ matrix.targetPlatform }} #on version ${{ matrix.unityVersion }}
+    name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         projectPath:
-          - Basic/SpaceShooter
-        #unityVersion:
-          #- 2022.1.2f1
-          #- 2019.2.11f1
-          #- 2019.3.15f1
+          - ./Basic/SpaceShooter
+        unityVersion:
+          - 2021.3.3f1
         targetPlatform:
-          #- StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          # - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          #
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
-          #- StandaloneLinux64 # Build a Linux 64-bit standalone.
-          #- iOS # Build an iOS player.
+          # - StandaloneLinux64 # Build a Linux 64-bit standalone.
+          # - iOS # Build an iOS player.
           - Android # Build an Android .apk.
           - WebGL # WebGL.
           #          - StandaloneWindows # Build a Windows standalone.
@@ -35,7 +34,6 @@ jobs:
           #          - XboxOne # Build a Xbox One Standalone.
           #          - tvOS # Build to Apple's tvOS platform.
           #          - Switch # Build a Nintendo Switch player
-          
     steps:
       ###########################
       #         Checkout        #
@@ -50,21 +48,21 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.projectPath }}/Library
-          key: Library-${{ matrix.projectPath }}-${{ matrix.targetPlatform }}
+          key: Library-${{ matrix.projectPath }}-ubuntu-${{ matrix.targetPlatform }}
           restore-keys: |
-            Library-${{ matrix.projectPath }}-
+            Library-${{ matrix.projectPath }}-ubuntu-
             Library-
-            
+
       ###########################
       #          Build          #
       ###########################
       - uses: game-ci/unity-builder@v2
         with:
           projectPath: ${{ matrix.projectPath }}
-          #unityVersion: ${{ matrix.unityVersion }}
+          unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
-          #customParameters: -profile SomeProfile -someBoolean -someValue exampleValue
-
+      #    customParameters: -profile SomeProfile -someBoolean -someValue exampleValue
+      
       ###########################
       #          Upload         #
       ###########################
